@@ -135,20 +135,47 @@ def main():
     st.sidebar.image("https://cdn-icons-png.flaticon.com/512/2070/2070086.png", width=80) 
     st.sidebar.header("🗺️ Aree di intervento")
     
-    # [MODIFICA 2]: Menu orizzontale in primo piano per gli Smartphone
     opzioni_sezione = [
         "1. Mappa barriere e servizi",
         "2. Sportello welfare e caregiver",
         "3. Imprese, lavoro e integrazione"
     ]
     
-    # Manteniamo la sidebar per il desktop
-    scelta_sidebar = st.sidebar.radio("Seleziona modulo:", opzioni_sezione)
+    # Inizializza lo stato se non esiste
+    if 'sezione_attiva' not in st.session_state:
+        st.session_state.sezione_attiva = opzioni_sezione[0]
+
+    # Callback per sincronizzare dalla Sidebar al Main
+    def sync_sidebar_to_main():
+        st.session_state.sezione_attiva = st.session_state.menu_sidebar
+
+    # Callback per sincronizzare dal Main alla Sidebar
+    def sync_main_to_sidebar():
+        st.session_state.sezione_attiva = st.session_state.menu_main
+
+    # Widget 1: Sidebar (Desktop)
+    st.sidebar.radio(
+        "Seleziona modulo:", 
+        opzioni_sezione, 
+        key="menu_sidebar",
+        index=opzioni_sezione.index(st.session_state.sezione_attiva),
+        on_change=sync_sidebar_to_main
+    )
     
-    # Aggiungiamo i bottoni grandi orizzontali per il touch su mobile
+    # Widget 2: Navigazione Orizzontale (Mobile)
     st.markdown("---")
-    sezione = st.radio("📱 **Navigazione rapida:**", opzioni_sezione, index=opzioni_sezione.index(scelta_sidebar), horizontal=True)
+    st.radio(
+        "📱 **Navigazione rapida:**", 
+        opzioni_sezione, 
+        key="menu_main",
+        index=opzioni_sezione.index(st.session_state.sezione_attiva),
+        horizontal=True,
+        on_change=sync_main_to_sidebar
+    )
     st.markdown("---")
+
+    # La variabile master che comanda le pagine
+    sezione = st.session_state.sezione_attiva
 
     # ---------------------------------------------------------
     # MODULO 1: MAPPA 
