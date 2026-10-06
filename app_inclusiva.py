@@ -13,11 +13,13 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+# [MODIFICA 1]: CSS Ingegneristico per forzare lo scroll verticale su mobile
 hide_st_style = """
             <style>
             #MainMenu {visibility: hidden;}
             footer {visibility: hidden;}
             header {visibility: hidden;}
+            .stPlotlyChart { touch-action: pan-y; }
             </style>
             """
 st.markdown(hide_st_style, unsafe_allow_html=True)
@@ -133,11 +135,20 @@ def main():
     st.sidebar.image("https://cdn-icons-png.flaticon.com/512/2070/2070086.png", width=80) 
     st.sidebar.header("🗺️ Aree di intervento")
     
-    sezione = st.sidebar.radio("Scegli un modulo operativo:", [
+    # [MODIFICA 2]: Menu orizzontale in primo piano per gli Smartphone
+    opzioni_sezione = [
         "1. Mappa barriere e servizi",
         "2. Sportello welfare e caregiver",
         "3. Imprese, lavoro e integrazione"
-    ])
+    ]
+    
+    # Manteniamo la sidebar per il desktop
+    scelta_sidebar = st.sidebar.radio("Seleziona modulo:", opzioni_sezione)
+    
+    # Aggiungiamo i bottoni grandi orizzontali per il touch su mobile
+    st.markdown("---")
+    sezione = st.radio("📱 **Navigazione rapida:**", opzioni_sezione, index=opzioni_sezione.index(scelta_sidebar), horizontal=True)
+    st.markdown("---")
 
     # ---------------------------------------------------------
     # MODULO 1: MAPPA 
@@ -189,7 +200,15 @@ def main():
         )
         
         fig.update_traces(marker=dict(size=15, opacity=0.9))
-        fig.update_layout(mapbox_style="open-street-map", margin={"r":0,"t":0,"l":0,"b":0}, legend_title_text='Stato Struttura:', legend=dict(yanchor="top", y=0.99, xanchor="left", x=0.01))
+        
+        # [MODIFICA 3]: Aggiunto dragmode=False per permettere lo scorrimento del dito sulla mappa
+        fig.update_layout(
+            mapbox_style="open-street-map", 
+            margin={"r":0,"t":0,"l":0,"b":0}, 
+            legend_title_text='Stato Struttura:', 
+            legend=dict(yanchor="top", y=0.99, xanchor="left", x=0.01),
+            dragmode=False 
+        )
         
         st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': True, 'scrollZoom': False})
         
@@ -267,7 +286,7 @@ def main():
         
         tab1, tab2 = st.tabs(["🚜 Motore di ricerca fondi e bandi", "🤝 Sportello multilingua (Ticket e orientamento)"])
 
-        # --- TAB 1: MOTORE DI RICERCA BANDI (Connesso al CSV) ---
+        # --- TAB 1: MOTORE DI RICERCA BANDI ---
         with tab1:
             st.markdown("#### Ricerca fondi per le imprese e il terzo settore")
             df_bandi = load_bandi_data()
@@ -277,12 +296,10 @@ def main():
             else:
                 col_b1, col_b2 = st.columns(2)
                 with col_b1:
-                    # Estrae i settori reali dal database in modo dinamico
                     settori_disponibili = ["Tutti i settori"] + sorted(df_bandi['settore'].unique().tolist())
                     settore_input = st.selectbox("Seleziona il settore:", settori_disponibili)
                 
                 with col_b2:
-                    # Filtra gli obiettivi in base al settore scelto
                     if settore_input == "Tutti i settori":
                         obiettivi_disponibili = ["Tutti gli obiettivi"] + sorted(df_bandi['obiettivo'].unique().tolist())
                     else:
@@ -313,12 +330,11 @@ def main():
                     else:
                         st.warning("Nessun bando aperto corrisponde ai criteri. Il Comune attiverà allerte personalizzate all'uscita di nuovi fondi.")
 
-        # --- TAB 2: SPORTELLO MULTILINGUA (Esteso) ---
+        # --- TAB 2: SPORTELLO MULTILINGUA ---
         with tab2:
             st.markdown("#### Accesso ai servizi civici e tutela legale")
             st.write("Generazione ticket istantanea per abbattere barriere burocratiche, sanitarie e formative.")
             
-            # Matrice di traduzione estesa
             matrice_servizi = {
                 "Salute e Sanità (Tessera STP/ENI, Medico base)": {
                     "Italiano": "Salute e Sanità (Tessera STP/ENI)",
@@ -354,7 +370,6 @@ def main():
             with col_t1:
                 lingua = st.selectbox("Seleziona la lingua di assistenza / Language:", ["Italiano", "English", "Français", "العربية", "Română"])
             with col_t2:
-                # Estraiamo i servizi nella lingua scelta dinamicamente
                 lista_voci_tradotte = [matrice_servizi[key][lingua] for key in matrice_servizi]
                 servizio_scelto = st.selectbox("Area di intervento / Service:", lista_voci_tradotte)
 
