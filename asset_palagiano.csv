@@ -1,0 +1,80 @@
+asset_id;type;name;lat;lon;status;accessibility;notes
+DAE-01;DAE;Farmacia Giacovazzo;40.57946654;17.04126117;OPERATIVO;Accessibile;Esterno, h24
+FAR-01;FARMACIA;Guardia Medica Palagiano Distretto Socio Sanitario 2;40.58127551;17.04497334;OPERATIVO;Accessibile;Chiude alle 20
+FAR-02;FARMACIA;Farmacia Giacovazzo;40.57946654;17.04126117;OPERATIVO;Accessibile;Chiude alle 20:30
+FAR-03;FARMACIA;Parafarmacia Dott.ssa Claudia Scalera - Palagiano;40.57899392;17.04366443;OPERATIVO;Accessibile;Chiude alle 20
+FAR-04;FARMACIA;Farmacia S. Camillo;40.57746196;17.04046723;OPERATIVO;Non Accessibile;Chiude alle 20:30
+FAR-05;FARMACIA;Farmacia Lorusso P.Rosaria;40.57927097;17.03615424;OPERATIVO;Parzialmente Accessibile;Chiude alle 20
+FAR-06;FARMACIA;Farmacia Fanuli Dott.ssa Franca;40.57637000;17.03589675;OPERATIVO;Parzialmente Accessibile;Chiude alle 20:30
+FAR-07;FARMACIA;Farmacia Salus;40.57568548;17.03711984;OPERATIVO;Accessibile;Chiude alle 20:30
+SCU-01;SCUOLA;Istituto Tecnico Statale Commerciale E Per Geometri G.Gasp.;40.57532259;17.03258514;OPERATIVO;Accessibile;Scuola Superiore
+SCU-02;SCUOLA;Istituto Tecnico Commerciale E Per Geometri G.M. Sforza;40.57489068;17.03320742;OPERATIVO;Accessibile;Scuola Superiore
+SCU-03;SCUOLA;Scuola Media Giovanni XXIII;40.57586912;17.03529776;OPERATIVO;Accessibile;Scuola Media
+SCU-04;SCUOLA;I.C. Nicola ruffo;40.57581208;17.03531117;OPERATIVO;Accessibile;Istituto Comprensivo
+SCU-05;SCUOLA;Istituto Comprensivo Rodari Palagiano;40.57225800;17.03756122;OPERATIVO;Accessibile;Istituto Comprensivo
+SCU-06;SCUOLA;Scuola dell'infanzia paritaria Disneland;40.57523250;17.03896670;OPERATIVO;Accessibile;Scuola dell'infanzia
+SCU-07;SCUOLA;Scuola Materna Statale Don Bosco;40.57975352;17.03762770;OPERATIVO;Accessibile;Scuola dell'infanzia
+SCU-08;SCUOLA;Istituto Comprensivo "Giovanni XXIII";40.58011205;17.04036355;OPERATIVO;Accessibile;Istituto Comprensivo
+SCU-09;SCUOLA;Scuola Dell'Infanzia "Don Bosco";40.58233656;17.03763843;OPERATIVO;Accessibile;Scuola dell'infanzia
+SCU-10;SCUOLA;Istituto Comprensivo Rodari Palagiano;40.58213613;17.04477748;OPERATIVO;Accessibile;Istituto Comprensivo
+SCU-11;SCUOLA;Il Paese Di Molto Molto Lontano;40.58310409;17.04443988;OPERATIVO;Accessibile;Scuola dell'infanzia
+REL-01;CULTO;Chiesa Maria SS. Annunziata;40.57949021;17.03465533;OPERATIVO;Accessibile;Chiude alle 20
+REL-02;CULTO;Chiesa di Maria Santissima Immacolata;40.57842127;17.03565676;OPERATIVO;Accessibile;Chiude alle 20
+REL-03;CULTO;Chiesa di San Nicola;40.57948336;17.04400647;OPERATIVO;Accessibile;Chiude alle 20
+REL-04;CULTO;Confraternita Di Misericordia Di Palagiano;40.57818319;17.03603421;OPERATIVO;Non Accessibile;Nessuna nota
+REL-05;CULTO;Chiesa Cristiana Evangelica ADI;40.57710797;17.03922883;OPERATIVO;Accessibile;Nessuna nota
+REL-06;CULTO;Chiesa della Madonna della Stella;40.55197337;17.02278435;OPERATIVO;Parzialmente Accessibile;Nessuna nota
+CAMPO-01;SPORT;Stadio Comunale "Marco Stea";40.57672998;17.04571961;OPERATIVO;Accessibile;Nessuna nota
+GYM-01;SPORT;MIROPA Club;40.57186853;17.03479550;OPERATIVO;Accessibile;Lun-Ven 09-22 | Sab 09-18
+GYM-02;SPORT;Planet Sport Palagiano;40.57579972;17.03377746;OPERATIVO;Non Accessibile;Lun-Ven 09-22 | Sab 09-17
+CAMPO-02;SPORT;Impianti Sportivi Opere Parrocchiali SS.Annunziata;40.58106752;17.03244963;OPERATIVO;Accessibile;Aperto 24 ore su 24
+GYM-03;SPORT;Body Center Bisci;40.57885063;17.03443673;OPERATIVO;Parzialmente Accessibile;Lun - Sab 09-22
+CAMPO-03;SPORT;Campo da basket;40.57149725;17.03658499;OPERATIVO;Non Accessibile;Esterno, h24
+GYM-05;SPORT;Addabbo Buompane Fit;40.58053965;17.03887086;OPERATIVO;Non Accessibile;Lun-Ven 09-21 | Sab 09-17
+GYM-06;SPORT;Polisportiva Judo Palagiano;40.58094402;17.04439388;OPERATIVO;Accessibile;Nessuna nota
+GYM-04;SPORT;Campo Bachelet;40.57268284;17.03770972;OPERATIVO;Accessibile;Esterno, h24
+CAMPO-04;SPORT;Parco bambini Bachelet;40.57246963;17.03849758;OPERATIVO;Accessibile;Esterno, h24
+COM-01;COMMERCIALE;BAR L’ORCHIDEA;40.58189202;17.04279963;OPERATIVO;Accessibile;Nessuna nota
+CAMPO-05;GENERICO;Green villa;40.58231207;17.04292903;OPERATIVO;Accessibile;Esterno, h24
+PA-01;UFFICIO;Polizia Locale;40.57694235;17.03747608;OPERATIVO;Parzialmente Accessibile;Chiude alle 21
+PA-02;UFFICIO;Ufficio Postale Poste Italiane;40.57879198;17.04116787;OPERATIVO;Accessibile;Chiude alle 19
+PA-03;UFFICIO;Comune di Palagiano;40.57886329;17.03951046;OPERATIVO;Accessibile;Nessuna nota
+PA-04;UFFICIO;Banca Widiba - Ufficio Finanziario;40.57915867;17.03782934;OPERATIVO;Parzialmente Accessibile;Lun-Ven 09–13
+PA-05;UFFICIO;Banca Popolare Di Puglia E Basilicata;40.57932164;17.03843016;OPERATIVO;Accessibile;Lun-Ven 08:30–13:20 | 14:45–15:45
+PA-06;UFFICIO;Banca Di Credito Cooperativo Di Massafra;40.57910978;17.03940648;OPERATIVO;Accessibile;Lun-Ven 08:30–14
+MED-01;DAE;Dott. Egidio Milano;40.58110820;17.03339517;OPERATIVO;Parzialmente Accessibile;Nessuna nota
+MED-02;DAE;Dottor Semeraro Giambattista Cardiologo;40.57915256;17.03603446;OPERATIVO;Parzialmente Accessibile;Lun-Ven 09-13 | 16-20
+MED-03;DAE;DottorAndrea Lippolis;40.57915256;17.03623831;OPERATIVO;Parzialmente Accessibile;Nessuna nota
+MED-04;DAE;Scapati Dr. Francesco;40.57890810;17.03633487;OPERATIVO;Non Accessibile;Lun-Ven 08-10 | 16-19
+MED-05;DAE;Baronetti Dott. Marco, Medico Chirurgo Specialista in Ortopedia e Traumatologia;40.57840792;17.03705718;OPERATIVO;Non Accessibile;Nessuna nota
+MED-06;DAE;Dottor Motola Cosimo;40.57765009;17.03555515;OPERATIVO;Parzialmente Accessibile;Nessuna nota
+MED-07;DAE;Dottor Niccolai Ugo;40.57930428;17.04007199;OPERATIVO;Non Accessibile;Nessuna nota
+MED-08;DAE;Medica Palagiano;40.57916575;17.04082300;OPERATIVO;Accessibile;Nessuna nota
+MED-09;DAE;Studio Dentistico Ricciardi Lumina;40.57687977;17.03612320;OPERATIVO;Parzialmente Accessibile;Lun-Ven 08:30-12:30 | 15:30-19:30
+MED-10;DAE;Studio Progetto Salute - Dr.ssa Graziana Ascoli Biologa Nutrizionista;40.57643032;17.03794395;OPERATIVO;Accessibile;Lun-Ven 08:30–20:30
+MED-11;DAE;Mortato Dr. Leonardo;40.57713330;17.04217718;OPERATIVO;Non Accessibile;Nessuna nota
+MED-12;DAE;Dott.ssa Lamanna Palagiano;40.57652252;17.04313307;OPERATIVO;Accessibile;Nessuna nota
+MED-13;DAE;Dott. Rocco LEGGIERI;40.57764037;17.04351239;OPERATIVO;Parzialmente Accessibile;Nessuna nota
+COM-02;COMMERCIALE;Naxos;40.58025533;17.03204356;OPERATIVO;Non Accessibile;Aperto 24 ore su 24
+COM-03;COMMERCIALE;L'artista Panificio-Caffetteria;40.57948900;17.03340153;OPERATIVO;Accessibile;Aperto 24 ore su 24
+COM-04;COMMERCIALE;Bar Laterza Ferdinando S.N.C.;40.57936248;17.03599163;OPERATIVO;Accessibile;Nessuna nota
+COM-05;COMMERCIALE;Mincuccio;40.57953012;17.03715551;OPERATIVO;Accessibile;Nessuna nota
+COM-06;COMMERCIALE;Maldarizzi Caffé;40.57908764;17.03593093;OPERATIVO;Accessibile;Nessuna nota
+COM-07;COMMERCIALE;BAR G.&V.;40.57925964;17.03777139;OPERATIVO;Accessibile;Aperto 24 ore su 24
+COM-08;COMMERCIALE;Jaden;40.57922573;17.03788622;OPERATIVO;Accessibile;Nessuna nota
+COM-09;COMMERCIALE;La Deliziosa;40.57904161;17.03919081;OPERATIVO;Accessibile;Nessuna nota
+COM-10;COMMERCIALE;Belmonte;40.58125826;17.04225930;OPERATIVO;Accessibile;Nessuna nota
+COM-11;COMMERCIALE;Gelateria glamour LA DOLCE VITA;40.58115229;17.04245796;OPERATIVO;Non Accessibile;Nessuna nota
+COM-12;COMMERCIALE;La Trilogia;40.58018940;17.04119449;OPERATIVO;Accessibile;Nessuna nota
+COM-13;COMMERCIALE;CRIVAL;40.57717601;17.04342678;OPERATIVO;Accessibile;Nessuna nota
+COM-14;COMMERCIALE;Piero Caffè;40.57897848;17.04021569;OPERATIVO;Accessibile;Nessuna nota
+COM-15;COMMERCIALE;Brico Montemurro;40.57079001;17.03888704;OPERATIVO;Accessibile;Nessuna nota
+COM-16;COMMERCIALE;Supermercato dok;40.57599796;17.03321495;OPERATIVO;Accessibile;Nessuna nota
+COM-17;COMMERCIALE;Alter Discount;40.57850754;17.03322974;OPERATIVO;Accessibile;Nessuna nota
+COM-18;COMMERCIALE;Alter Discount via Piccinni;40.58112922;17.03548710;OPERATIVO;Accessibile;Nessuna nota
+COM-19;COMMERCIALE;SPESA A&O;40.58125552;17.03738611;OPERATIVO;Accessibile;Nessuna nota
+COM-20;COMMERCIALE;La Gardenia Blu;40.58151015;17.03760873;OPERATIVO;Accessibile;Nessuna nota
+COM-21;COMMERCIALE;Lo spuntino;40.58121487;17.03905231;OPERATIVO;Non Accessibile;Nessuna nota
+COM-22;COMMERCIALE;Bar Q8 Romanazzi;40.58408317;17.04622225;OPERATIVO;Accessibile;Nessuna nota
+COM-23;COMMERCIALE;Tagarié;40.57966352;17.04047035;OPERATIVO;Accessibile;Nessuna nota
+COM-24;COMMERCIALE;ML - Stazione di servizio;40.57264389;17.03951458;OPERATIVO;Accessibile;Nessuna nota
