@@ -242,11 +242,19 @@ def main():
                 df_istat, x="popolazione", y="fascia_eta", orientation='h', color="categoria",
                 title="Distribuzione popolazione per fascia d'età",
                 labels={"popolazione": "Numero residenti", "fascia_eta": "Fascia d'età"},
-                text="popolazione"
+                text="popolazione",
+                height=400  # Altezza ottimale per far entrare tutte e 5 le fasce su mobile
             )
             fig_istat.update_traces(textposition="inside")
-            fig_istat.update_layout(margin={"l":0,"r":0,"t":40,"b":0})
-            st.plotly_chart(fig_istat, use_container_width=True, config={'displayModeBar': False})
+            
+            # Impediamo il blocco del touch, nascondiamo la legenda laterale che ruba spazio su mobile e rimuoviamo lo zoom
+            fig_istat.update_layout(
+                margin={"l":0,"r":0,"t":40,"b":0},
+                dragmode=False,
+                showlegend=False
+            )
+            
+            st.plotly_chart(fig_istat, use_container_width=True, config={'displayModeBar': False, 'scrollZoom': False, 'staticPlot': True})
             st.caption("Fonte: ISTAT - Bilancio demografico permanente Palagiano.")
 
         st.markdown("---")
