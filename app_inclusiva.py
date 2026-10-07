@@ -135,47 +135,40 @@ def main():
     st.sidebar.image("https://cdn-icons-png.flaticon.com/512/2070/2070086.png", width=80) 
     st.sidebar.header("🗺️ Aree di intervento")
     
+    # --- NAVIGAZIONE PULITA (SOLO SIDEBAR) ---
+    st.sidebar.image("https://cdn-icons-png.flaticon.com/512/2070/2070086.png", width=80) 
+    st.sidebar.header("🗺️ Aree di intervento")
+    
+    # Messaggio di aiuto visibile solo su schermi piccoli (invita ad aprire il menu in alto a sinistra)
+    st.markdown("""
+        <style>
+        @media (min-width: 768px) {
+            .mobile-hint { display: none; }
+        }
+        .mobile-hint {
+            background-color: #e6f2ff;
+            color: #005A9C;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            border-left: 4px solid #005A9C;
+        }
+        </style>
+        <div class="mobile-hint">
+            👈 Tocca l'icona del menu ( > ) in alto a sinistra per cambiare area.
+        </div>
+    """, unsafe_allow_html=True)
+
     opzioni_sezione = [
         "1. Mappa barriere e servizi",
         "2. Sportello welfare e caregiver",
         "3. Imprese, lavoro e integrazione"
     ]
     
-    # Inizializza lo stato se non esiste
-    if 'sezione_attiva' not in st.session_state:
-        st.session_state.sezione_attiva = opzioni_sezione[0]
-
-    # Callback per sincronizzare dalla Sidebar al Main
-    def sync_sidebar_to_main():
-        st.session_state.sezione_attiva = st.session_state.menu_sidebar
-
-    # Callback per sincronizzare dal Main alla Sidebar
-    def sync_main_to_sidebar():
-        st.session_state.sezione_attiva = st.session_state.menu_main
-
-    # Widget 1: Sidebar (Desktop)
-    st.sidebar.radio(
-        "Seleziona modulo:", 
-        opzioni_sezione, 
-        key="menu_sidebar",
-        index=opzioni_sezione.index(st.session_state.sezione_attiva),
-        on_change=sync_sidebar_to_main
-    )
-    
-    # Widget 2: Navigazione Orizzontale (Mobile)
-    st.markdown("---")
-    st.radio(
-        "📱 **Navigazione rapida:**", 
-        opzioni_sezione, 
-        key="menu_main",
-        index=opzioni_sezione.index(st.session_state.sezione_attiva),
-        horizontal=True,
-        on_change=sync_main_to_sidebar
-    )
-    st.markdown("---")
-
-    # La variabile master che comanda le pagine
-    sezione = st.session_state.sezione_attiva
+    sezione = st.sidebar.radio("Seleziona modulo:", opzioni_sezione)
 
     # ---------------------------------------------------------
     # MODULO 1: MAPPA 
