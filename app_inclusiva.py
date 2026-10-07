@@ -4,7 +4,7 @@ import plotly.express as px
 import datetime
 
 # ==========================================
-# 1. CONFIGURAZIONE PAGINA
+# 1. Configurazione pagina
 # ==========================================
 st.set_page_config(
     page_title="Palagiano Inclusiva",
@@ -13,19 +13,34 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# [MODIFICA 1]: CSS Ingegneristico per forzare lo scroll verticale su mobile
+# CSS ottimizzato: nascondiamo solo il menu tecnico e il footer, salvando la freccia del pannello laterale
 hide_st_style = """
             <style>
             #MainMenu {visibility: hidden;}
             footer {visibility: hidden;}
-            header {visibility: hidden;}
             .stPlotlyChart { touch-action: pan-y; }
+            
+            /* Messaggio mobile per guidare l'utente */
+            @media (min-width: 768px) {
+                .mobile-hint { display: none; }
+            }
+            .mobile-hint {
+                background-color: #e6f2ff;
+                color: #005A9C;
+                padding: 10px;
+                border-radius: 5px;
+                text-align: center;
+                font-weight: bold;
+                font-size: 0.9em;
+                margin-bottom: 15px;
+                border-left: 4px solid #005A9C;
+            }
             </style>
             """
 st.markdown(hide_st_style, unsafe_allow_html=True)
 
 # ==========================================
-# 2. MOTORI DATI
+# 2. Motori dati
 # ==========================================
 @st.cache_data
 def load_map_data():
@@ -61,7 +76,7 @@ if "tab_urgenti" not in st.session_state:
     st.session_state["tab_urgenti"] = {"selection": {"rows": []}}
 
 # ==========================================
-# 3. MOTORE LOGICO WELFARE
+# 3. Motore logico welfare
 # ==========================================
 def calcola_diritti_welfare(isee, figli, disabilita, legge_104):
     diritti = []
@@ -106,7 +121,7 @@ def calcola_diritti_welfare(isee, figli, disabilita, legge_104):
         })
         
         diritti.append({
-            "titolo": "Progetto Home Care Premium",
+            "titolo": "Progetto home care premium",
             "importo": "Contributo per assistenza domiciliare",
             "descrizione": "Finanziamento per l'assunzione di assistenti familiari per persone non autosufficienti.",
             "fonte": "INPS Gestione Dipendenti Pubblici",
@@ -126,42 +141,16 @@ def calcola_diritti_welfare(isee, figli, disabilita, legge_104):
     return diritti
 
 # ==========================================
-# 4. INTERFACCIA UTENTE (UI)
+# 4. Interfaccia utente (UI)
 # ==========================================
 def main():
     st.title("💙 Palagiano Inclusiva")
     st.markdown("### La centrale operativa per l'abbattimento delle barriere e lo sviluppo.")
     
+    # --- Pannello di navigazione laterale ---
     st.sidebar.image("https://cdn-icons-png.flaticon.com/512/2070/2070086.png", width=80) 
     st.sidebar.header("🗺️ Aree di intervento")
     
-    # --- NAVIGAZIONE PULITA (SOLO SIDEBAR) ---
-    st.sidebar.image("https://cdn-icons-png.flaticon.com/512/2070/2070086.png", width=80) 
-    st.sidebar.header("🗺️ Aree di intervento")
-    
-    # Messaggio di aiuto visibile solo su schermi piccoli (invita ad aprire il menu in alto a sinistra)
-    st.markdown("""
-        <style>
-        @media (min-width: 768px) {
-            .mobile-hint { display: none; }
-        }
-        .mobile-hint {
-            background-color: #e6f2ff;
-            color: #005A9C;
-            padding: 10px;
-            border-radius: 5px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 0.9em;
-            margin-bottom: 15px;
-            border-left: 4px solid #005A9C;
-        }
-        </style>
-        <div class="mobile-hint">
-            👈 Tocca l'icona del menu ( > ) in alto a sinistra per cambiare area.
-        </div>
-    """, unsafe_allow_html=True)
-
     opzioni_sezione = [
         "1. Mappa barriere e servizi",
         "2. Sportello welfare e caregiver",
@@ -170,8 +159,15 @@ def main():
     
     sezione = st.sidebar.radio("Seleziona modulo:", opzioni_sezione)
 
+    # Messaggio di aiuto per l'apertura del menu, visibile solo su cellulare
+    st.markdown("""
+        <div class="mobile-hint">
+            👈 Tocca l'icona del menu ( > ) in alto a sinistra per cambiare area.
+        </div>
+    """, unsafe_allow_html=True)
+
     # ---------------------------------------------------------
-    # MODULO 1: MAPPA 
+    # Modulo 1: Mappa 
     # ---------------------------------------------------------
     if sezione == "1. Mappa barriere e servizi":
         st.info("**La nostra visione:** Non facciamo promesse, mappiamo problemi per risolverli. Seleziona una struttura dalla tabella per localizzarla sulla mappa.")
@@ -221,7 +217,6 @@ def main():
         
         fig.update_traces(marker=dict(size=15, opacity=0.9))
         
-        # [MODIFICA 3]: Aggiunto dragmode=False per permettere lo scorrimento del dito sulla mappa
         fig.update_layout(
             mapbox_style="open-street-map", 
             margin={"r":0,"t":0,"l":0,"b":0}, 
@@ -243,10 +238,10 @@ def main():
             )
 
     # ---------------------------------------------------------
-    # MODULO 2: SPORTELLO WELFARE 
+    # Modulo 2: Sportello welfare 
     # ---------------------------------------------------------
     elif sezione == "2. Sportello welfare e caregiver":
-        st.markdown("### 📊 Fotografia demografica (Dati reali)")
+        st.markdown("### 📊 Fotografia demografica (Dati reali ISTAT)")
         df_istat = load_istat_data()
         if not df_istat.empty:
             pop_totale = df_istat['popolazione'].sum()
@@ -263,11 +258,11 @@ def main():
                 title="Distribuzione popolazione per fascia d'età",
                 labels={"popolazione": "Numero residenti", "fascia_eta": "Fascia d'età"},
                 text="popolazione",
-                height=400  # Altezza ottimale per far entrare tutte e 5 le fasce su mobile
+                height=400 
             )
             fig_istat.update_traces(textposition="inside")
             
-            # Impediamo il blocco del touch, nascondiamo la legenda laterale che ruba spazio su mobile e rimuoviamo lo zoom
+            # Parametri aggiornati per impedire il movimento sul cellulare e nascondere la legenda ingombrante
             fig_istat.update_layout(
                 margin={"l":0,"r":0,"t":40,"b":0},
                 dragmode=False,
@@ -307,14 +302,14 @@ def main():
                         st.markdown(f"**Fonte:** {diritto['fonte']}")
 
     # ---------------------------------------------------------
-    # MODULO 3: IMPRESE, LAVORO E INTEGRAZIONE 
+    # Modulo 3: Imprese, lavoro e integrazione 
     # ---------------------------------------------------------
     elif sezione == "3. Imprese, lavoro e integrazione":
         st.info("Applicativi operativi connessi ai database civici. Seleziona l'azione desiderata.")
         
         tab1, tab2 = st.tabs(["🚜 Motore di ricerca fondi e bandi", "🤝 Sportello multilingua (Ticket e orientamento)"])
 
-        # --- TAB 1: MOTORE DI RICERCA BANDI ---
+        # --- TAB 1: Motore di ricerca bandi ---
         with tab1:
             st.markdown("#### Ricerca fondi per le imprese e il terzo settore")
             df_bandi = load_bandi_data()
@@ -358,7 +353,7 @@ def main():
                     else:
                         st.warning("Nessun bando aperto corrisponde ai criteri. Il Comune attiverà allerte personalizzate all'uscita di nuovi fondi.")
 
-        # --- TAB 2: SPORTELLO MULTILINGUA ---
+        # --- TAB 2: Sportello multilingua ---
         with tab2:
             st.markdown("#### Accesso ai servizi civici e tutela legale")
             st.write("Generazione ticket istantanea per abbattere barriere burocratiche, sanitarie e formative.")
@@ -428,7 +423,7 @@ def main():
                 """, unsafe_allow_html=True)
 
     # ==========================================
-    # FIRMA
+    # Firma
     # ==========================================
     st.markdown("---")
     st.markdown(
