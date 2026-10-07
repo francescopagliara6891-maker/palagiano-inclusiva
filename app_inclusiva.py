@@ -162,7 +162,7 @@ def main():
     # Messaggio di aiuto per l'apertura del menu, visibile solo su cellulare
     st.markdown("""
         <div class="mobile-hint">
-            👈 Tocca l'icona del menu ( > ) in alto a sinistra per cambiare area.
+            👈 Tocca l'icona del menu ( >> ) in alto a sinistra per cambiare area.
         </div>
     """, unsafe_allow_html=True)
 
