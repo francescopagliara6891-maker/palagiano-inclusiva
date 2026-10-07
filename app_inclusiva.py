@@ -13,7 +13,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# CSS ottimizzato: nascondiamo solo il menu tecnico e il footer, salvando la freccia del pannello laterale
+# CSS ottimizzato: nascondiamo solo il menu tecnico e il footer
 hide_st_style = """
             <style>
             #MainMenu {visibility: hidden;}
@@ -145,7 +145,7 @@ def calcola_diritti_welfare(isee, figli, disabilita, legge_104):
 # ==========================================
 def main():
     st.title("💙 Palagiano Inclusiva")
-    st.markdown("### La centrale operativa per l'abbattimento delle barriere e lo sviluppo.")
+    st.markdown("### Il Servizio per la Comunità per l'abbattimento delle barriere e lo sviluppo.")
     
     # --- Pannello di navigazione laterale ---
     st.sidebar.image("https://cdn-icons-png.flaticon.com/512/2070/2070086.png", width=80) 
@@ -159,10 +159,9 @@ def main():
     
     sezione = st.sidebar.radio("Seleziona modulo:", opzioni_sezione)
 
-    # Messaggio di aiuto per l'apertura del menu, visibile solo su cellulare
     st.markdown("""
         <div class="mobile-hint">
-            👈 Tocca l'icona del menu ( >> ) in alto a sinistra per cambiare area.
+            👈 Tocca l'icona del menu ( > ) in alto a sinistra per cambiare area.
         </div>
     """, unsafe_allow_html=True)
 
@@ -170,7 +169,7 @@ def main():
     # Modulo 1: Mappa 
     # ---------------------------------------------------------
     if sezione == "1. Mappa barriere e servizi":
-        st.info("**La nostra visione:** Non facciamo promesse, mappiamo problemi per risolverli. Seleziona una struttura dalla tabella per localizzarla sulla mappa.")
+        st.info("**La nostra visione:** mappare problemi per risolverli. Seleziona una struttura dalla tabella per localizzarla sulla mappa.")
         df_mappa = load_map_data()
         
         if df_mappa.empty:
@@ -228,7 +227,8 @@ def main():
         st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': True, 'scrollZoom': False})
         
         st.markdown("---")
-        st.markdown(f"#### 🚨 Piano di intervento prioritario ({len(df_urgenti)} strutture critiche)")
+        # Titolo modificato per approccio manageriale costruttivo
+        st.markdown(f"#### 📋 Piano di adeguamento dell'accessibilità ({len(df_urgenti)} strutture identificate)")
         
         if not df_urgenti.empty:
             df_table_view = df_urgenti[['name', 'type', 'accessibility', 'notes', 'google_maps_url', 'lat', 'lon']].copy()
@@ -260,16 +260,21 @@ def main():
                 text="popolazione",
                 height=400 
             )
-            fig_istat.update_traces(textposition="inside")
             
-            # Parametri aggiornati per impedire il movimento sul cellulare e nascondere la legenda ingombrante
+            # Tooltip abilitato e formattato per pulizia visiva
+            fig_istat.update_traces(
+                textposition="inside",
+                hovertemplate="<b>Fascia:</b> %{y}<br><b>Residenti:</b> %{x}<extra></extra>"
+            )
+            
+            # Rimosso staticPlot=True dal config e gestito solo tramite dragmode e scrollZoom per preservare i tooltips
             fig_istat.update_layout(
                 margin={"l":0,"r":0,"t":40,"b":0},
                 dragmode=False,
                 showlegend=False
             )
             
-            st.plotly_chart(fig_istat, use_container_width=True, config={'displayModeBar': False, 'scrollZoom': False, 'staticPlot': True})
+            st.plotly_chart(fig_istat, use_container_width=True, config={'displayModeBar': False, 'scrollZoom': False})
             st.caption("Fonte: ISTAT - Bilancio demografico permanente Palagiano.")
 
         st.markdown("---")
