@@ -153,7 +153,7 @@ def main():
     
     opzioni_sezione = [
         "1. Mappa barriere e servizi",
-        "2. Sportello welfare e caregiver",
+        "2. Sportello welfare",
         "3. Imprese, lavoro e integrazione"
     ]
     
@@ -227,7 +227,6 @@ def main():
         st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': True, 'scrollZoom': False})
         
         st.markdown("---")
-        # Titolo modificato per approccio manageriale costruttivo
         st.markdown(f"#### 📋 Piano di adeguamento dell'accessibilità ({len(df_urgenti)} strutture identificate)")
         
         if not df_urgenti.empty:
@@ -240,7 +239,7 @@ def main():
     # ---------------------------------------------------------
     # Modulo 2: Sportello welfare 
     # ---------------------------------------------------------
-    elif sezione == "2. Sportello welfare e caregiver":
+    elif sezione == "2. Sportello welfare":
         st.markdown("### 📊 Fotografia demografica (Dati reali ISTAT)")
         df_istat = load_istat_data()
         if not df_istat.empty:
@@ -250,7 +249,7 @@ def main():
             
             col_kpi1, col_kpi2, col_kpi3 = st.columns(3)
             col_kpi1.metric("Popolazione residente", f"{pop_totale:,}".replace(',', '.'))
-            col_kpi2.metric("Over 65 (Necessità assistenza)", f"{over_65:,}".replace(',', '.'))
+            col_kpi2.metric("Over 65", f"{over_65:,}".replace(',', '.'))
             col_kpi3.metric("Incidenza anziani", f"{incidenza_anziani:.1f}%")
 
             fig_istat = px.bar(
@@ -261,13 +260,11 @@ def main():
                 height=400 
             )
             
-            # Tooltip abilitato e formattato per pulizia visiva
             fig_istat.update_traces(
                 textposition="inside",
                 hovertemplate="<b>Fascia:</b> %{y}<br><b>Residenti:</b> %{x}<extra></extra>"
             )
             
-            # Rimosso staticPlot=True dal config e gestito solo tramite dragmode e scrollZoom per preservare i tooltips
             fig_istat.update_layout(
                 margin={"l":0,"r":0,"t":40,"b":0},
                 dragmode=False,
