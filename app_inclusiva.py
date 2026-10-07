@@ -153,7 +153,7 @@ def main():
     
     opzioni_sezione = [
         "1. Mappa barriere e servizi",
-        "2. Sportello welfare e caregiver",
+        "2. Sportello welfare",
         "3. Imprese, lavoro e integrazione"
     ]
     
@@ -250,7 +250,7 @@ def main():
             
             col_kpi1, col_kpi2, col_kpi3 = st.columns(3)
             col_kpi1.metric("Popolazione residente", f"{pop_totale:,}".replace(',', '.'))
-            col_kpi2.metric("Over 65 (Necessità assistenza)", f"{over_65:,}".replace(',', '.'))
+            col_kpi2.metric("Over 65", f"{over_65:,}".replace(',', '.'))
             col_kpi3.metric("Incidenza anziani", f"{incidenza_anziani:.1f}%")
 
             fig_istat = px.bar(
